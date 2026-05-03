@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche — Echeveria</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dust: #c8bfb0;
+    --dust2: #a09080;
+    --terracotta: #b05830;
+    --terra-pale: #faf0e8;
+    --terra-mid: #e8c8b0;
+    --sage: #7a9060;
+    --sage-pale: #eaf0e4;
+    --sky: #7090a8;
+    --sky-pale: #e4ecf2;
+    --sand: #f0e8d8;
+    --linen: #faf6f0;
+    --paper: #fdf9f4;
+    --ink: #241e18;
+    --ink2: #3a3028;
+    --stone: #6a5e50;
+    --pebble: #a09080;
+    --border: #e0d8cc;
+    --amber: #c08020;
+    --amber-pale: #fdf4e0;
+    --red: #8a2020;
+    --red-pale: #fbe8e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--sand);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--terra-mid);
+  }
+
+  .hero-top {
+    background: var(--terracotta);
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-top::before {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .hero-top::after {
+    content: '🌵';
+    position: absolute;
+    right: 56px; top: 20px;
+    font-size: 110px;
+    opacity: 0.12;
+    line-height: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 14px;
+  }
+
+  .hero-top h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 58px;
+    font-weight: 400;
+    color: white;
+    line-height: 1.0;
+    margin-bottom: 4px;
+    position: relative;
+  }
+
+  .hero-latin {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .b-light { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+  .b-warn { background: rgba(255,220,180,0.25); color: #ffe8c8; border: 1px solid rgba(255,200,150,0.3); }
+
+  .hero-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    max-width: 500px;
+    line-height: 1.75;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .date-tag {
+    position: absolute;
+    top: 20px; right: 56px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+
+  /* BOTTOM HERO STRIP */
+  .hero-bottom {
+    padding: 16px 56px;
+    background: var(--sand);
+    display: flex;
+    gap: 0;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--terra-mid);
+  }
+
+  .hb-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 28px;
+    margin-right: 28px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    font-size: 12px;
+    color: var(--stone);
+  }
+
+  .hb-item:last-child { border-right: none; }
+  .hb-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .d-green { background: #5a9040; }
+  .d-amber { background: var(--amber); }
+  .d-red { background: var(--red); }
+
+  /* CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 56px 48px;
+  }
+
+  .section { margin-bottom: 48px; }
+
+  .sh {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .sh-num {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 11px;
+    color: var(--dust);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  .sh-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ink2);
+  }
+
+  .sh-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 3px;
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 14px;
+  }
+
+  .card ul { list-style: none; }
+  .card ul li {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--stone);
+    border-bottom: 1px solid #f8f4f0;
+    line-height: 1.65;
+    align-items: flex-start;
+  }
+  .card ul li:last-child { border-bottom: none; }
+  .li-i { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+  .card ul li strong { font-weight: 500; color: var(--ink2); }
+
+  /* METRICS */
+  .m-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+  .m-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  .m-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+
+  .metric {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .metric.terra { background: var(--terra-pale); border-color: var(--terra-mid); }
+
+  .m-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pebble);
+    margin-bottom: 8px;
+  }
+
+  .m-val {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--terracotta);
+    line-height: 1;
+  }
+
+  .m-sub { font-size: 11px; color: var(--pebble); margin-top: 4px; font-weight: 300; }
+
+  /* ALERTS */
+  .alert {
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .a-ok { background: var(--sage-pale); border-left: 3px solid var(--sage); }
+  .a-warn { background: var(--amber-pale); border-left: 3px solid var(--amber); }
+  .a-danger { background: var(--red-pale); border-left: 3px solid var(--red); }
+  .a-sky { background: var(--sky-pale); border-left: 3px solid var(--sky); }
+
+  .a-icon { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .a-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+
+  .a-ok .a-title { color: #3a6020; }
+  .a-warn .a-title { color: #7a4a10; }
+  .a-danger .a-title { color: #6a1818; }
+  .a-sky .a-title { color: #284060; }
+
+  .a-text { font-size: 13px; line-height: 1.6; font-weight: 300; }
+  .a-ok .a-text { color: var(--sage); }
+  .a-warn .a-text { color: #9a6020; }
+  .a-danger .a-text { color: #902020; }
+  .a-sky .a-text { color: #406080; }
+
+  /* TIP */
+  .tip {
+    background: var(--ink2);
+    border-radius: 4px;
+    padding: 18px 22px;
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .tip-i { font-size: 18px; flex-shrink: 0; }
+  .tip-t { font-size: 13px; color: var(--terra-mid); line-height: 1.7; font-weight: 300; }
+  .tip-t strong { color: white; font-weight: 500; }
+
+  /* DIVIDER */
+  .div {
+    border: none;
+    border-top: 1px dashed var(--border);
+    margin: 48px 0;
+  }
+
+  /* SUBSTRATE VISUAL */
+  .substrate-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .sub-card {
+    border-radius: 4px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+  }
+
+  .sub-bad { background: var(--red-pale); border-color: #e0c0c0; }
+  .sub-good { background: var(--sage-pale); border-color: #c0d0b8; }
+
+  .sub-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .sub-bad .sub-label { color: var(--red); }
+  .sub-good .sub-label { color: #3a6020; }
+
+  .sub-item {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--stone);
+    padding: 4px 0;
+    font-weight: 300;
+  }
+
+  /* SEASON FINALE */
+  .season {
+    background: var(--terracotta);
+    border-radius: 4px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .season::before {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .season::after {
+    content: '🌵';
+    position: absolute;
+    right: 32px; bottom: 20px;
+    font-size: 80px;
+    opacity: 0.12;
+  }
+
+  .season h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .s-row {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.65;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .s-row:last-child { border-bottom: none; }
+  .s-ic { flex-shrink: 0; font-size: 14px; margin-top: 2px; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    padding: 22px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .hero-top, .hero-bottom { padding-left: 24px; padding-right: 24px; }
+    .hero-top h1 { font-size: 40px; }
+    .content { padding: 32px 24px; }
+    .m-grid, .m-grid-3 { grid-template-columns: 1fr 1fr; }
+    .substrate-compare { grid-template-columns: 1fr; }
+    .date-tag { display: none; }
+  }
+</style>
+<style>
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247,244,238,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #ddd8ce;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 56px;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+.site-nav-logo {
+  font-size: 16px; font-weight: 600; color: #1a2e1c;
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.site-nav-links {
+  display: flex; align-items: center; gap: 2px; flex-wrap: nowrap;
+}
+.site-nav-links a {
+  font-size: 12px; font-weight: 400; color: #5a5a52;
+  text-decoration: none; padding: 5px 11px; border-radius: 20px;
+  transition: all 0.15s; white-space: nowrap;
+}
+.site-nav-links a:hover { background: #1a2e1c; color: white; }
+.site-nav-links a.snav-back {
+  border: 1px solid #ddd8ce; background: white; color: #1a2e1c;
+}
+.site-nav-hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px;
+  background: none; border: none; cursor: pointer; padding: 4px; border-radius: 8px;
+}
+.site-nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: #1a2e1c; border-radius: 2px; transition: all 0.25s;
+}
+.site-nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.site-nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.site-nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.site-nav-drawer {
+  display: none; position: fixed; top: 56px; left: 0; right: 0;
+  background: rgba(247,244,238,0.99); backdrop-filter: blur(16px);
+  border-bottom: 1px solid #ddd8ce; padding: 10px 16px 16px;
+  z-index: 99; flex-direction: column; gap: 3px;
+  box-shadow: 0 8px 24px rgba(26,46,28,0.1);
+}
+.site-nav-drawer.open { display: flex; }
+.site-nav-drawer a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-radius: 10px;
+  font-size: 15px; color: #5a5a52; text-decoration: none; transition: all 0.15s;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+.site-nav-drawer a:hover { background: #1a2e1c; color: white; }
+@media (max-width: 680px) {
+  .site-nav { padding: 0 16px; }
+  .site-nav-links { display: none; }
+  .site-nav-hamburger { display: flex; }
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html" class="site-nav-logo">🌿 Mon Jardin</a>
+  <div class="site-nav-links">
+    <a href="index.html" class="snav-back">← Accueil</a>
+    <a href="fiche_lierre.html">🍃 Lierre</a>
+    <a href="fiche_kentia.html">🌴 Kentia</a>
+    <a href="fiche_composition.html">☕ Compo</a>
+    <a href="fiche_bonsai_ligustrum.html">🎋 Bonsaï</a>
+    <a href="fiche_echeveria.html">🌵 Echeveria</a>
+  </div>
+  <button class="site-nav-hamburger" id="snav-btn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="site-nav-drawer" id="snav-drawer">
+  <a href="index.html">🏠 Accueil</a>
+  <a href="fiche_lierre.html">🍃 Lierre commun</a>
+  <a href="fiche_kentia.html">🌴 Kentia Palm</a>
+  <a href="fiche_composition.html">☕ Composition tasse</a>
+  <a href="fiche_bonsai_ligustrum.html">🎋 Bonsaï Ligustrum</a>
+  <a href="fiche_echeveria.html">🌵 Echeveria</a>
+</div>
+<script>
+(function(){
+  var btn = document.getElementById('snav-btn');
+  var drawer = document.getElementById('snav-drawer');
+  if(btn) btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  if(drawer) drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      btn.classList.remove('open');
+      drawer.classList.remove('open');
+    });
+  });
+})();
+</script>
+
+
+<div class="hero">
+  <div class="hero-top">
+    <span class="date-tag">03 · 05 · 2026</span>
+    <div class="hero-eyebrow">Fiche d'entretien · Succulente · Crassulacées</div>
+    <h1>Echeveria</h1>
+    <div class="hero-latin">Echeveria elegans / hybride</div>
+    <div class="hero-badges">
+      <span class="badge b-light">🌵 Crassulacées</span>
+      <span class="badge b-light">🌎 Mexique · Amérique centrale</span>
+      <span class="badge b-light">☀️ Plein soleil</span>
+      <span class="badge b-warn">⚠️ Substrat à changer</span>
+    </div>
+    <p class="hero-desc">Rosette succulente parfaite aux feuilles glauques vert-bleu à reflets argentés, bordées de rose-brun. Spécimen compact et bien formé. Deux points à corriger rapidement : le substrat trop organique et le brunissement des feuilles inférieures.</p>
+  </div>
+  <div class="hero-bottom">
+    <div class="hb-item"><span class="hb-dot d-green"></span> Rosette compacte et bien formée</div>
+    <div class="hb-item"><span class="hb-dot d-amber"></span> Substrat inadapté</div>
+    <div class="hb-item"><span class="hb-dot d-amber"></span> Pointes brunes sur feuilles basses</div>
+    <div class="hb-item"><span class="hb-dot d-green"></span> Cœur sain, nouvelles pousses</div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ÉTAT -->
+  <div class="section">
+    <div class="sh">
+      <span class="sh-num">01</span>
+      <h2 class="sh-title">État de santé observé</h2>
+      <span class="sh-line"></span>
+    </div>
+
+    <div class="alert a-ok">
+      <span class="a-icon">✓</span>
+      <div>
+        <div class="a-title">Rosette centrale saine et compacte</div>
+        <div class="a-text">Le cœur de la plante est bien serré, de nouvelles feuilles poussent normalement. La couleur glauque caractéristique est belle et uniforme.</div>
+      </div>
+    </div>
+
+    <div class="alert a-warn">
+      <span class="a-icon">⚠</span>
+      <div>
+        <div class="a-title">Substrat trop organique — à changer dès que possible</div>
+        <div class="a-text">Le substrat visible sur les photos contient beaucoup de fibre de bois et de tourbe — il retient trop l'humidité pour une succulente. Risque de pourriture racinaire si l'arrosage est trop fréquent. Rempoter dans un mélange drainant est la priorité.</div>
+      </div>
+    </div>
+
+    <div class="alert a-warn">
+      <span class="a-icon">⚠</span>
+      <div>
+        <div class="a-title">Pointes brunes sur les feuilles inférieures</div>
+        <div class="a-text">Les vieilles feuilles de la base brunissent et sèchent — c'est souvent normal (vieillissement naturel), mais peut aussi indiquer un surplus d'humidité ou un manque de lumière. À surveiller après le rempotage.</div>
+      </div>
+    </div>
+
+    <div class="alert a-sky">
+      <span class="a-icon">ℹ</span>
+      <div>
+        <div class="a-title">Echeveria en appartement : lumière est tout</div>
+        <div class="a-text">Les Echeverias sont des plantes de désert. En appartement, la difficulté principale est de leur donner assez de lumière. Une fenêtre sud ou ouest directement ensoleillée est l'idéal — sans ça, la rosette s'étiolera.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- LUMINOSITÉ -->
+  <div class="section">
+    <div class="sh">
+      <span class="sh-num">02</span>
+      <h2 class="sh-title">Luminosité</h2>
+      <span class="sh-line"></span>
+    </div>
+
+    <div class="card">
+      <ul>
+        <li><span class="li-i">☀️</span><span><strong>Plein soleil ou lumière très vive directe</strong> — c'est la condition essentielle. Minimum 4–6h de soleil direct par jour. Un rebord de fenêtre sud ou sud-ouest est parfait.</span></li>
+        <li><span class="li-i">🌤️</span><span>Tolère la lumière indirecte vive, mais la rosette deviendra moins compacte et les couleurs moins intenses. En lumière insuffisante, la plante s'étiolera (allongement du centre).</span></li>
+        <li><span class="li-i">🏡</span><span>En été, <strong>sortir en extérieur</strong> en plein soleil (balcon, terrasse) est fortement recommandé — les Echeverias adorent la chaleur et le soleil direct estival.</span></li>
+        <li><span class="li-i">🚫</span><span>Jamais dans un couloir sombre, loin d'une fenêtre ou derrière un voilage épais. La mort lente assurée.</span></li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <span class="tip-i">💡</span>
+      <div class="tip-t">Si la rosette commence à <strong>s'allonger vers le haut</strong> et que les feuilles s'espacent (étiolement), c'est le signal d'un manque de lumière critique. Rapprocher immédiatement d'une source de lumière vive.</div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ARROSAGE -->
+  <div class="section">
+    <div class="sh">
+      <span class="sh-num">03</span>
+      <h2 class="sh-title">Arrosage</h2>
+      <span class="sh-line"></span>
+    </div>
+
+    <div class="m-grid">
+      <div class="metric terra">
+        <div class="m-label">Printemps · Été</div>
+        <div class="m-val">1×</div>
+        <div class="m-sub">toutes les 2 semaines</div>
+      </div>
+      <div class="metric terra">
+        <div class="m-label">Automne · Hiver</div>
+        <div class="m-val">1×</div>
+        <div class="m-sub">par mois</div>
+      </div>
+      <div class="metric">
+        <div class="m-label">Test avant arrosage</div>
+        <div class="m-val">Sec</div>
+        <div class="m-sub">substrat complètement sec</div>
+      </div>
+      <div class="metric">
+        <div class="m-label">Méthode idéale</div>
+        <div class="m-val">Par le bas</div>
+        <div class="m-sub">trempage 30 min</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <ul>
+        <li><span class="li-i">💧</span><span>Attendre que le substrat soit <strong>complètement sec</strong> avant d'arroser. En cas de doute, attendre encore 2–3 jours — les Echeverias supportent beaucoup mieux la sécheresse que l'excès d'eau.</span></li>
+        <li><span class="li-i">🪣</span><span><strong>Méthode par trempage</strong> (idéale) : poser le pot dans un bol d'eau 20–30 min, laisser le substrat s'imbiber par le bas, puis égoutter complètement. Jamais d'eau stagnante.</span></li>
+        <li><span class="li-i">🚫</span><span><strong>Ne jamais arroser par le dessus au centre de la rosette</strong> — l'eau stagnant au cœur des feuilles provoque des pourritures et des taches indélébiles.</span></li>
+        <li><span class="li-i">🌧️</span><span>Eau de pluie ou filtrée de préférence. Le calcaire peut laisser des dépôts blancs disgracieux sur les feuilles.</span></li>
+        <li><span class="li-i">❄️</span><span>En hiver, réduire drastiquement — une fois par mois suffit. La plante est en semi-repos végétatif.</span></li>
+      </ul>
+    </div>
+
+    <div class="alert a-danger">
+      <span class="a-icon">🔴</span>
+      <div>
+        <div class="a-title">Règle d'or : mieux vaut sous-arroser que sur-arroser</div>
+        <div class="a-text">Un Echeveria qui manque d'eau aura des feuilles légèrement ridées et récupérera avec un arrosage. Un Echeveria pourri depuis le bas est perdu. En cas de doute, ne pas arroser.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- SUBSTRAT -->
+  <div class="section">
+    <div class="sh">
+      <span class="sh-num">04</span>
+      <h2 class="sh-title">Substrat & Rempotage</h2>
+      <span class="sh-line"></span>
+    </div>
+
+    <div class="alert a-warn" style="margin-bottom:20px;">
+      <span class="a-icon">⚠</span>
+      <div>
+        <div class="a-title">Action prioritaire : changer le substrat</div>
+        <div class="a-text">Le substrat actuel est clairement inadapté pour une succulente. Le rempoter dans un mélange drainant est la première chose à faire, idéalement maintenant en mai.</div>
+      </div>
+    </div>
+
+    <div class="substrate-compare">
+      <div class="sub-card sub-bad">
+        <div class="sub-label">🚫 À éviter</div>
+        <div class="sub-item"><span>✗</span><span>Terreau universel seul</span></div>
+        <div class="sub-item"><span>✗</span><span>Terreau avec fibres de bois</span></div>
+        <div class="sub-item"><span>✗</span><span>Substrat retenant l'humidité</span></div>
+        <div class="sub-item"><span>✗</span><span>Pot sans trou de drainage</span></div>
+      </div>
+      <div class="sub-card sub-good">
+        <div class="sub-label">✓ Idéal</div>
+        <div class="sub-item"><span>✓</span><span>Terreau cactées/succulentes</span></div>
+        <div class="sub-item"><span>✓</span><span>Mélange 50% terreau + 50% perlite</span></div>
+        <div class="sub-item"><span>✓</span><span>Pouzzolane en couche du fond</span></div>
+        <div class="sub-item"><span>✓</span><span>Pot en terre cuite avec drainage</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <ul>
+        <li><span class="li-i">📅</span><span>Rempoter <strong>tous les 2 ans au printemps</strong> ou dès que les racines sortent du pot. Mai est parfait — la plante est en croissance active.</span></li>
+        <li><span class="li-i">🏺</span><span>Un <strong>pot en terre cuite</strong> est idéal — il absorbe l'excès d'humidité. Le pot plastique actuel retient trop l'eau.</span></li>
+        <li><span class="li-i">📐</span><span>Choisir un pot de taille adaptée — un pot trop grand retient trop d'eau humide autour des racines. Le pot ne doit dépasser la rosette que de 2–3 cm de diamètre.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- TEMPÉRATURE -->
+  <div class="section">
+    <div class="sh">
+      <span class="sh-num">05</span>
+      <h2 class="sh-title">Température & Entretien</h2>
+      <span class="sh-line"></span>
+    </div>
+
+    <div class="m-grid-3">
+      <div class="metric">
+        <div class="m-label">Temp. idéale</div>
+        <div class="m-val">18–30°C</div>
+      </div>
+      <div class="metric">
+        <div class="m-label">Minimum</div>
+        <div class="m-val">5°C</div>
+        <div class="m-sub">pas de gel</div>
+      </div>
+      <div class="metric">
+        <div class="m-label">Fertilisation</div>
+        <div class="m-val">1×/mois</div>
+        <div class="m-sub">avril à septembre</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <ul>
+        <li><span class="li-i">🌡️</span><span>Aime la chaleur. Parfaitement adapté aux températures d'appartement estivales. Ne tolère pas le gel.</span></li>
+        <li><span class="li-i">✂️</span><span>Retirer les vieilles feuilles mortes de la base en les tirant doucement (ne pas couper) — elles se détachent naturellement. Cela empêche les moisissures et améliore l'aspect.</span></li>
+        <li><span class="li-i">🌱</span><span><strong>Fertilisation</strong> : engrais spécial cactées/succulentes très dilué (quart de dose), une fois par mois d'avril à septembre. Zéro en hiver.</span></li>
+        <li><span class="li-i">🐣</span><span><strong>Multiplication par feuilles</strong> facilissime : détacher une feuille entière en la tirant délicatement, la poser à plat sur du substrat sec, à la lumière. Une nouvelle rosette apparaît en 3–6 semaines.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- SIGNES DE FAIBLESSE -->
+  <div class="section">
+    <div class="sh">
+      <span class="sh-num">06</span>
+      <h2 class="sh-title">Signes de faiblesse & corrections</h2>
+      <span class="sh-line"></span>
+    </div>
+
+    <div class="alert a-danger">
+      <span class="a-icon">🔴</span>
+      <div>
+        <div class="a-title">Tige du bas molle, noire ou translucide</div>
+        <div class="a-text">→ Pourriture racinaire par excès d'eau. Agir immédiatement : sortir du pot, couper toutes les parties noires/molles avec un couteau propre, laisser sécher à l'air 2–3 jours, rempoter dans du substrat drainant sec.</div>
+      </div>
+    </div>
+
+    <div class="alert a-warn">
+      <span class="a-icon">🟡</span>
+      <div>
+        <div class="a-title">Rosette qui s'allonge, feuilles espacées (étiolement)</div>
+        <div class="a-text">→ Manque de lumière. Rapprocher immédiatement d'une fenêtre très lumineuse ou sortir en extérieur. La forme étiolée ne reviendra pas mais les nouvelles feuilles seront normales.</div>
+      </div>
+    </div>
+
+    <div class="alert a-warn">
+      <span class="a-icon">🟡</span>
+      <div>
+        <div class="a-title">Feuilles ridées ou plissées</div>
+        <div class="a-text">→ Sécheresse. Arroser abondamment par trempage. Récupération rapide en 24–48h. C'est le signal à surveiller pour savoir qu'il est temps d'arroser.</div>
+      </div>
+    </div>
+
+    <div class="alert a-warn">
+      <span class="a-icon">🟡</span>
+      <div>
+        <div class="a-title">Taches blanches sur les feuilles</div>
+        <div class="a-text">→ Dépôts calcaires (arrosage par le dessus avec eau du robinet) ou cochenilles farineuses (petits points cotonneux). Pour les dépôts : essuyer avec coton imbibé d'alcool dilué. Pour cochenilles : même traitement + isoler.</div>
+      </div>
+    </div>
+
+    <div class="alert a-ok">
+      <span class="a-icon">✓</span>
+      <div>
+        <div class="a-title">Feuilles rougeâtres/orangées au soleil → c'est normal !</div>
+        <div class="a-text">Un stress lumineux modéré (beaucoup de soleil) intensifie les pigments rouges dans les feuilles — c'est un signe de bonne santé et de bonne exposition. Les couleurs deviennent plus intenses et belles.</div>
+      </div>
+    </div>
+
+    <div class="alert a-ok">
+      <span class="a-icon">✓</span>
+      <div>
+        <div class="a-title">Feuilles basses qui sèchent et tombent → normal</div>
+        <div class="a-text">Les vieilles feuilles de la base se desséchent progressivement — c'est le cycle naturel de la plante. Simplement les retirer proprement.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- MAI -->
+  <div class="section">
+    <div class="season">
+      <h3>Mai 2026 — Conseils urgents & de saison</h3>
+      <div class="s-row"><span class="s-ic">🏺</span><span><strong>Rempoter maintenant</strong> — priorité absolue. Le substrat actuel est inadapté. Préparer un mélange 50% terreau cactées + 50% perlite, rempoter dans un pot en terre cuite légèrement plus grand avec drainage.</span></div>
+      <div class="s-row"><span class="s-ic">☀️</span><span><strong>Installer au soleil direct</strong> — avec les beaux jours, placer sur le rebord de fenêtre le plus ensoleillé ou sortir sur le balcon à partir de mi-mai (éviter choc thermique brutal au début).</span></div>
+      <div class="s-row"><span class="s-ic">💧</span><span><strong>Reprendre l'arrosage bimensuel</strong> — la croissance active reprend. Attendre que le nouveau substrat soit bien sec avant le premier arrosage post-rempotage (attendre 1 semaine).</span></div>
+      <div class="s-row"><span class="s-ic">🌱</span><span>Démarrer la fertilisation mensuelle légère (engrais cactées très dilué).</span></div>
+      <div class="s-row"><span class="s-ic">🐣</span><span>C'est la saison idéale pour tenter une <strong>multiplication par feuilles</strong> — les conditions printanières favorisent l'enracinement rapide.</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Fiche d'entretien · 03 · 05 · 2026 · Echeveria elegans / hybride · Crassulacées
+</div>
+
+</body>
+</html>
