@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche d'entretien — Kentia Palm</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1a3a2a;
+    --green-mid: #2d6245;
+    --green-light: #4a9468;
+    --green-pale: #c8e6d5;
+    --green-wash: #edf6f1;
+    --amber: #d4873a;
+    --amber-pale: #fdf0e3;
+    --red-soft: #c0392b;
+    --red-pale: #fdecea;
+    --cream: #faf8f3;
+    --ink: #1a1a18;
+    --ink-muted: #5a5a55;
+    --ink-faint: #9a9a95;
+    --border: #ddd9d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--green-deep);
+    color: white;
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,148,104,0.3) 0%, transparent 70%);
+  }
+
+  .hero::after {
+    content: '🌴';
+    position: absolute;
+    right: 48px; bottom: -10px;
+    font-size: 120px;
+    opacity: 0.12;
+    line-height: 1;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green-pale);
+    margin-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .hero-latin {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--green-pale);
+    margin-bottom: 20px;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    color: var(--green-pale);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .date-stamp {
+    position: absolute;
+    top: 24px; right: 48px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+  }
+
+  /* HEALTH STATUS BAR */
+  .health-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .health-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px 16px 0;
+    margin-right: 24px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    font-size: 13px;
+  }
+
+  .health-item:last-child { border-right: none; }
+
+  .health-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-green { background: #27ae60; }
+  .dot-amber { background: var(--amber); }
+  .dot-red { background: var(--red-soft); }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--green-deep);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--green-deep);
+  }
+
+  /* GRID CARDS */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .metric-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--green-deep);
+    line-height: 1;
+  }
+
+  .metric-sub {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+  }
+
+  /* CONTENT CARD */
+  .content-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+
+  .content-card p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-muted);
+  }
+
+  .content-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .content-card ul li {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--ink-muted);
+    border-bottom: 1px solid #f0ede8;
+    line-height: 1.6;
+    align-items: flex-start;
+  }
+
+  .content-card ul li:last-child { border-bottom: none; }
+
+  .li-icon {
+    font-size: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ALERTS */
+  .alert {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .alert-ok { background: var(--green-wash); border-left: 3px solid var(--green-light); }
+  .alert-warn { background: var(--amber-pale); border-left: 3px solid var(--amber); }
+  .alert-danger { background: var(--red-pale); border-left: 3px solid var(--red-soft); }
+
+  .alert-icon { font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+
+  .alert-content {}
+  .alert-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .alert-ok .alert-title { color: var(--green-deep); }
+  .alert-warn .alert-title { color: #7a4a10; }
+  .alert-danger .alert-title { color: #7a1e1e; }
+
+  .alert-text { font-size: 13px; line-height: 1.6; }
+  .alert-ok .alert-text { color: var(--green-mid); }
+  .alert-warn .alert-text { color: #9a6020; }
+  .alert-danger .alert-text { color: #a02020; }
+
+  /* TIP BOX */
+  .tip-box {
+    background: var(--green-deep);
+    color: white;
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-top: 16px;
+  }
+
+  .tip-box-icon { font-size: 20px; flex-shrink: 0; }
+  .tip-box-text { font-size: 13px; color: var(--green-pale); line-height: 1.7; }
+  .tip-box-text strong { color: white; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--green-deep);
+    color: var(--green-pale);
+    text-align: center;
+    padding: 24px 48px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  /* Seasonal highlight */
+  .season-card {
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+    border-radius: 16px;
+    padding: 28px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .season-card::after {
+    content: '🌱';
+    position: absolute;
+    right: 24px; bottom: 16px;
+    font-size: 64px;
+    opacity: 0.15;
+  }
+
+  .season-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--green-pale);
+  }
+
+  .season-card ul { list-style: none; }
+  .season-card ul li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    padding: 6px 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 36px 24px 36px; }
+    .hero h1 { font-size: 34px; }
+    .content { padding: 24px; }
+    .grid-2, .grid-4 { grid-template-columns: 1fr 1fr; }
+    .health-bar { padding: 0 24px; }
+    .date-stamp { display: none; }
+  }
+</style>
+</head>
+<body>
+<nav style="position:sticky;top:0;z-index:100;background:rgba(247,244,238,0.96);backdrop-filter:blur(10px);border-bottom:1px solid #ddd8ce;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:54px;font-family:sans-serif;">
+  <a href="index.html" style="font-size:18px;color:#1a2e1c;text-decoration:none;font-weight:500;">🌿 Mon Jardin</a>
+  <div style="display:flex;gap:3px;flex-wrap:wrap;">
+    <a href="index.html" style="font-size:11px;color:#5a5a52;text-decoration:none;padding:4px 10px;border-radius:20px;border:1px solid #ddd8ce;background:white;">← Accueil</a>
+    <a href="fiche_lierre.html" style="font-size:11px;color:#5a5a52;text-decoration:none;padding:4px 10px;border-radius:20px;">🍃 Lierre</a>
+    <a href="fiche_kentia.html" style="font-size:11px;color:#5a5a52;text-decoration:none;padding:4px 10px;border-radius:20px;">🌴 Kentia</a>
+    <a href="fiche_composition.html" style="font-size:11px;color:#5a5a52;text-decoration:none;padding:4px 10px;border-radius:20px;">☕ Compo</a>
+    <a href="fiche_bonsai_ligustrum.html" style="font-size:11px;color:#5a5a52;text-decoration:none;padding:4px 10px;border-radius:20px;">🎋 Bonsaï</a>
+    <a href="fiche_echeveria.html" style="font-size:11px;color:#5a5a52;text-decoration:none;padding:4px 10px;border-radius:20px;">🌵 Echeveria</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="date-stamp">Fiche du 03/05/2026</span>
+  <div class="hero-label">Fiche d'entretien · Palmier d'intérieur</div>
+  <h1>Kentia Palm</h1>
+  <div class="hero-latin">Howea forsteriana</div>
+  <div class="badges">
+    <span class="badge">🌿 Arecaceae</span>
+    <span class="badge">🏝️ Île Lord Howe, Australie</span>
+    <span class="badge">🐢 Croissance lente</span>
+    <span class="badge">✅ Non toxique</span>
+  </div>
+  <p class="hero-desc">L'un des palmiers d'intérieur les plus élégants et robustes qui soit. Spécimen de belle taille (~80–100 cm), feuillage vert profond et dense. Identification certaine sur frondes arquées, folioles longues et étroites en éventail le long d'un rachis central.</p>
+</div>
+
+<div class="health-bar">
+  <div class="health-item"><span class="health-dot dot-green"></span> Feuillage dense et sain</div>
+  <div class="health-item"><span class="health-dot dot-amber"></span> Pointes brunes sur folioles</div>
+  <div class="health-item"><span class="health-dot dot-amber"></span> Trop proche du radiateur</div>
+  <div class="health-item"><span class="health-dot dot-green"></span> Bonne vigueur générale</div>
+</div>
+
+<div class="content">
+
+  <!-- ÉTAT DE SANTÉ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔍</div>
+      <div class="section-title">État de santé observé</div>
+    </div>
+    <div class="alert alert-ok">
+      <span class="alert-icon">✓</span>
+      <div class="alert-content">
+        <div class="alert-title">Feuillage globalement sain</div>
+        <div class="alert-text">Couleur vert profond et brillante, frondes bien développées et denses — signe d'un arrosage et d'une luminosité corrects.</div>
+      </div>
+    </div>
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠</span>
+      <div class="alert-content">
+        <div class="alert-title">Pointes de folioles brunes</div>
+        <div class="alert-text">Plusieurs pointes marron visibles. Cause probable : air trop sec (chauffage central), eau calcaire, ou léger stress hydrique par moments.</div>
+      </div>
+    </div>
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠</span>
+      <div class="alert-content">
+        <div class="alert-title">Position trop proche du radiateur</div>
+        <div class="alert-text">La chaleur sèche est l'ennemi n°1 du Kentia. Éloigner d'au moins 1 mètre dès que possible.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- LUMINOSITÉ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">☀️</div>
+      <div class="section-title">Luminosité</div>
+    </div>
+    <div class="content-card">
+      <ul>
+        <li><span class="li-icon">🌤️</span><span>Lumière vive indirecte, idéalement à 2–3 m d'une fenêtre orientée sud ou ouest. Tolère la mi-ombre mais la croissance sera encore plus lente.</span></li>
+        <li><span class="li-icon">🚫</span><span>Éviter le soleil direct qui brûle et jaunit les folioles irrémédiablement.</span></li>
+        <li><span class="li-icon">🔄</span><span>Tourner le pot d'un quart de tour chaque mois pour une croissance équilibrée.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ARROSAGE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">💧</div>
+      <div class="section-title">Arrosage</div>
+    </div>
+    <div class="grid-2">
+      <div class="metric-card">
+        <div class="metric-label">Printemps · Été</div>
+        <div class="metric-value">1×</div>
+        <div class="metric-sub">par semaine</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Automne · Hiver</div>
+        <div class="metric-value">1×</div>
+        <div class="metric-sub">toutes les 2 semaines</div>
+      </div>
+    </div>
+    <div class="content-card">
+      <ul>
+        <li><span class="li-icon">👆</span><span>Arroser abondamment puis laisser le substrat sécher sur les <strong>2–3 premiers cm</strong> avant de réarroser. Tester avec le doigt.</span></li>
+        <li><span class="li-icon">🚿</span><span>Eau à température ambiante. Préférer l'<strong>eau filtrée ou de pluie</strong> — le calcaire accentue les pointes brunes.</span></li>
+        <li><span class="li-icon">🚫</span><span>Ne jamais laisser stagner l'eau dans la soucoupe. Drainage impératif.</span></li>
+      </ul>
+    </div>
+    <div class="tip-box">
+      <span class="tip-box-icon">💡</span>
+      <div class="tip-box-text">Le Kentia préfère qu'on le <strong>sous-arrose</strong> plutôt qu'on le sur-arrose. Un arrosage excessif est la première cause de mort de cette plante.</div>
+    </div>
+  </div>
+
+  <!-- TEMPÉRATURE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🌡️</div>
+      <div class="section-title">Température & Humidité</div>
+    </div>
+    <div class="grid-4">
+      <div class="metric-card">
+        <div class="metric-label">Temp. idéale</div>
+        <div class="metric-value" style="font-size:20px;">16–24°C</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Minimum</div>
+        <div class="metric-value" style="font-size:20px;">10°C</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Humidité</div>
+        <div class="metric-value" style="font-size:20px;">&gt;50%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Brumisation</div>
+        <div class="metric-value" style="font-size:20px;">2–3×</div>
+        <div class="metric-sub">par semaine en hiver</div>
+      </div>
+    </div>
+    <div class="content-card">
+      <ul>
+        <li><span class="li-icon">❄️</span><span>Supporte jusqu'à 10°C mais pas le gel. Éviter les courants d'air froid et les fenêtres mal isolées en hiver.</span></li>
+        <li><span class="li-icon">💦</span><span>Brumiser les frondes 2–3 fois par semaine en hiver. Un humidificateur ou galet d'argile humide dans la soucoupe est encore plus efficace.</span></li>
+        <li><span class="li-icon">🔥</span><span>Le radiateur à proximité diffuse de la chaleur sèche — éloigner la plante ou intercaler un écran protecteur.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUBSTRAT & REMPOTAGE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🪴</div>
+      <div class="section-title">Substrat & Rempotage</div>
+    </div>
+    <div class="content-card">
+      <ul>
+        <li><span class="li-icon">🌱</span><span><strong>Substrat idéal :</strong> terreau pour palmiers, ou mélange 60 % terreau universel + 30 % sable grossier + 10 % perlite. Drainage impératif.</span></li>
+        <li><span class="li-icon">📅</span><span>Rempoter tous les <strong>2–3 ans</strong> au printemps uniquement si les racines sortent du pot. Pot d'1 cm de diamètre supérieur max.</span></li>
+        <li><span class="li-icon">⚠️</span><span>Ne jamais déranger la motte racinaire — les racines du Kentia sont fragiles et détestent être perturbées.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FERTILISATION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🌿</div>
+      <div class="section-title">Fertilisation</div>
+    </div>
+    <div class="grid-2">
+      <div class="alert alert-ok" style="margin-bottom:0;">
+        <span class="alert-icon">🌱</span>
+        <div class="alert-content">
+          <div class="alert-title">Avril → Septembre</div>
+          <div class="alert-text">Engrais liquide palmiers, demi-dose, 1 fois par mois.</div>
+        </div>
+      </div>
+      <div class="alert alert-warn" style="margin-bottom:0;">
+        <span class="alert-icon">🚫</span>
+        <div class="alert-content">
+          <div class="alert-title">Octobre → Mars</div>
+          <div class="alert-text">Aucune fertilisation — risque de brûlures racinaires.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRETIEN -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">✂️</div>
+      <div class="section-title">Entretien courant</div>
+    </div>
+    <div class="content-card">
+      <ul>
+        <li><span class="li-icon">✂️</span><span>Couper uniquement les frondes <strong>entièrement mortes</strong> (brunes à la base) avec des ciseaux propres. Ne jamais couper une fronde encore verte même partiellement abîmée — cela stoppe définitivement sa croissance.</span></li>
+        <li><span class="li-icon">🧹</span><span>Essuyer les folioles avec un chiffon humide régulièrement pour retirer la poussière qui obstrue les stomates.</span></li>
+        <li><span class="li-icon">🔄</span><span>Tourner le pot régulièrement pour obtenir une silhouette équilibrée de tous côtés.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SIGNES DE FAIBLESSE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔬</div>
+      <div class="section-title">Signes de faiblesse & corrections</div>
+    </div>
+    <div class="alert alert-warn">
+      <span class="alert-icon">🟡</span>
+      <div class="alert-content">
+        <div class="alert-title">Pointes brunes sur les folioles</div>
+        <div class="alert-text">→ Air trop sec (brumiser + éloigner du radiateur), eau calcaire (utiliser eau de pluie), ou arrosage irrégulier.</div>
+      </div>
+    </div>
+    <div class="alert alert-warn">
+      <span class="alert-icon">🟡</span>
+      <div class="alert-content">
+        <div class="alert-title">Feuilles jaunes</div>
+        <div class="alert-text">→ Sur-arrosage (vérifier le drainage, laisser sécher) ou manque de lumière. Frondes jaunes à la base = vieillissement normal.</div>
+      </div>
+    </div>
+    <div class="alert alert-danger">
+      <span class="alert-icon">🔴</span>
+      <div class="alert-content">
+        <div class="alert-title">Feuilles molles / tiges flasques</div>
+        <div class="alert-text">→ Sous-arrosage sévère. Arroser abondamment. Si le substrat est très sec, trempage du pot 30 min dans l'eau.</div>
+      </div>
+    </div>
+    <div class="alert alert-danger">
+      <span class="alert-icon">🔴</span>
+      <div class="alert-content">
+        <div class="alert-title">Taches brunes cotonneuses ou pustules</div>
+        <div class="alert-text">→ Cochenilles ou araignées rouges. Traiter avec savon noir dilué + alcool à 70°. Isoler la plante immédiatement.</div>
+      </div>
+    </div>
+    <div class="alert alert-ok">
+      <span class="alert-icon">✓</span>
+      <div class="alert-content">
+        <div class="alert-title">Croissance très lente → c'est tout à fait normal !</div>
+        <div class="alert-text">Le Kentia est l'un des palmiers les plus lents. 2–3 nouvelles frondes par an en bonne santé, c'est excellent.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONSEILS SAISONNIERS -->
+  <div class="section">
+    <div class="season-card">
+      <h3>🌿 Conseils du mois de Mai</h3>
+      <ul>
+        <li><span>🌱</span><span>Reprise de végétation : reprendre les arrosages réguliers et démarrer la fertilisation mensuelle.</span></li>
+        <li><span>🔆</span><span>Profiter des jours qui s'allongent pour rapprocher légèrement la plante d'une source de lumière naturelle.</span></li>
+        <li><span>💧</span><span>Avec la fin de la saison de chauffe, l'humidité ambiante devrait augmenter naturellement — les pointes brunes devraient ralentir.</span></li>
+        <li><span>📍</span><span>Si le radiateur n'est plus utilisé, c'est le bon moment pour repositionner la plante à son emplacement idéal pour l'été.</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  🌿 Fiche d'entretien générée le 03/05/2026 · Kentia Palm (Howea forsteriana)
+</div>
+
+</body>
+</html>
